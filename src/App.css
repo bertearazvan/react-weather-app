@@ -1,0 +1,75 @@
+.nav {
+  font-family: "Oswald";
+  font-size: 26px;
+}
+
+.weatherImg {
+  max-width: 80%;
+}
+
+.forecastImg {
+  max-width: 70%;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Oswald";
+}
+/* Title */
+h2 {
+  text-align: center;
+  font-size: 56px;
+  font-weight: 500;
+}
+/* Day/Time */
+h3 {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 500;
+}
+/* Specifics title */
+h4 {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.specificsMain {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+#tempMain {
+  text-align: center;
+  font-size: 64px;
+  font-weight: 600;
+}
+
+#minMaxMain {
+  margin-top: -10px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  padding-left: 7px;
+}
+
+.forecastTemp {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.forecastItem {
+  transition: 0.7s ease;
+  cursor: pointer;
+}
+
+.forecastItem:hover {
+  padding: 0.2px;
+}
