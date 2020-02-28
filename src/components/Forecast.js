@@ -13,7 +13,7 @@ export default class Forecast extends Component {
   async componentDidMount() {
     try {
       const response = await fetch(
-        `http://api.openweathermap.org/data/2.5/forecast?id=${this.state.cityId}&appid=${this.state.apiKey}&units=metric&cnt=5`
+        `https://api.openweathermap.org/data/2.5/forecast?id=${this.state.cityId}&appid=${this.state.apiKey}&units=metric&cnt=5`
       );
 
       this.setState({

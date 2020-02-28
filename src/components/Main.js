@@ -12,7 +12,7 @@ class Main extends Component {
   async componentDidMount() {
     try {
       const response = await fetch(
-        `http://api.openweathermap.org/data/2.5/weather?id=${this.state.cityId}&appid=${this.state.apiKey}&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?id=${this.state.cityId}&appid=${this.state.apiKey}&units=metric`
       );
 
       this.setState({ currentWeather: await response.json(), loading: true });
