@@ -19,18 +19,21 @@ h4,
 h5 {
   font-family: "Oswald";
 }
+
 /* Title */
 h2 {
   text-align: center;
   font-size: 56px;
   font-weight: 500;
 }
+
 /* Day/Time */
 h3 {
   text-align: center;
   font-size: 36px;
   font-weight: 500;
 }
+
 /* Specifics title */
 h4 {
   text-align: center;
@@ -72,4 +75,18 @@ h4 {
 
 .forecastItem:hover {
   padding: 0.2px;
+}
+
+.searchBtn {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.searchBar {
+  border-right: 1px solid black;
+}
+
+.searchResult:hover {
+  background-color: green;
+  cursor: pointer;
 }

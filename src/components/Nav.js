@@ -8,7 +8,9 @@ class Nav extends Component {
           <p>Weather App</p>
         </div>
         <div className='float-right nav'>
-          <a href='https://github.com/'>GitHub</a>
+          <a href='https://github.com/bertearazvan/react-weather-app.git'>
+            GitHub repo
+          </a>
         </div>
       </div>
     );

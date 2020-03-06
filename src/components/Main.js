@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import CurrentWeather from "./CurrentWeather";
 import Forecast from "./Forecast";
+import SearchBar from "./SearchBar";
 
 class Main extends Component {
   state = {
     currentWeather: Object,
-    apiKey: "9efbc6fe71feedee8977557b7c4d4103",
+    apiKey: "1ffbe8f54b8f87482ca96356aa6d91c0",
     cityId: "2643743",
     loading: false
   };
-  async componentDidMount() {
+
+  async componentWillMount() {
     try {
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?id=${this.state.cityId}&appid=${this.state.apiKey}&units=metric`
@@ -21,6 +23,12 @@ class Main extends Component {
       console.log(error);
     }
   }
+
+  onCityChange = geonameId => {
+    this.setState({ cityId: geonameId });
+    console.log("new city geonameid: ", geonameId);
+    this.componentWillMount();
+  };
 
   onForecastChange = currentForecast => {
     console.log("new forecast: ", currentForecast);
@@ -37,14 +45,17 @@ class Main extends Component {
         <div
           className='flex max-w-5xl m-auto items-center'
           style={{ height: "90vh" }}>
-          <div
-            className='border border-gray-600 text-center rounded-lg shadow-md'
-            style={{ width: "100%", height: "auto" }}>
-            <CurrentWeather currentWeather={this.state.currentWeather} />
-            <Forecast
-              handleForecastChange={this.onForecastChange}
-              cityId={this.state.cityId}
-            />
+          <div>
+            <SearchBar handleSearchCity={this.onCityChange} />
+            <div
+              className='mt-12 border border-gray-600 text-center rounded-lg shadow-md'
+              style={{ width: "100%", height: "auto" }}>
+              <CurrentWeather currentWeather={this.state.currentWeather} />
+              <Forecast
+                handleForecastChange={this.onForecastChange}
+                cityId={this.state.cityId}
+              />
+            </div>
           </div>
         </div>
       );
@@ -55,7 +66,7 @@ class Main extends Component {
           style={{ height: "90vh" }}>
           <div
             className='border border-gray-600 text-center rounded-lg shadow-md'
-            style={{ width: "100%", height: "auto" }}>
+            style={{ width: "100%", height: "60vh" }}>
             <div>LOADING</div>
           </div>
         </div>

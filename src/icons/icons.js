@@ -1,7 +1,7 @@
 const icons = [{
         "id": "01d",
         "name": "Clear Sky",
-        "pathJs": "/weather_icons/o1d.png",
+        "pathJs": "/weather_icons/01d.png",
         "pathHtml": "%PUBLIC_URL%/weather_icons/oid.png"
     }, {
         "id": "02d",
@@ -55,7 +55,7 @@ const icons = [{
         "id": "01n",
         "name": "Clear Sky",
         "pathJs": "/weather_icons/01n.png",
-        "pathHtml": "%PUBLIC_URL%/weather_icons/oid.png"
+        "pathHtml": "%PUBLIC_URL%/weather_icons/o1d.png"
     }, {
         "id": "02n",
         "name": "Few clouds",
