@@ -12,7 +12,7 @@ class SearchBar extends Component {
   setSearch = city => {
     this.setState({ currentSelect: city });
     document.getElementById("searchBar").value =
-      city.name + ", " + city.country;
+      city.name + ", " + city.subcountry + ", " + city.country;
     this.setState({ searchedString: "" });
   };
 
@@ -20,7 +20,8 @@ class SearchBar extends Component {
     this.setState({ searchedString: event.target.value });
     if (event.target.value.length > 2) {
       var cities = cityJSON.filter(function(city) {
-        let FullString = city.name + city.subcountry + city.country;
+        let FullString =
+          city.name + ", " + city.subcountry + ", " + city.country;
         return FullString.includes(event.target.value);
       });
 
@@ -35,7 +36,9 @@ class SearchBar extends Component {
 
     if (loading) {
       return (
-        <div className='grid w-full' style={{ gridTemplateColumns: "1fr" }}>
+        <div
+          className='grid absolute w-full'
+          style={{ gridTemplateColumns: "1fr", marginTop: "-20px" }}>
           <div className='flex justify-center'>
             <div className='w-6/12 border border-gray-600 rounded-lg shadow-md'>
               <input

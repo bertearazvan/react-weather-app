@@ -1,34 +1,42 @@
 import React, { Component } from "react";
 import moment from "moment";
 import icons from "../icons/icons";
+import GridLoader from "react-spinners/GridLoader";
 
 export default class Forecast extends Component {
   state = {
-    apiKey: "9efbc6fe71feedee8977557b7c4d4103",
     cityId: this.props.cityId,
     loading: false,
     forecast: Object
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     try {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?id=${this.state.cityId}&appid=${this.state.apiKey}&units=metric&cnt=5`
+      this.fetchDataForecastAsync().then(data =>
+        this.setState({
+          forecast: data,
+          loading: true
+        })
       );
-
-      this.setState({
-        forecast: await response.json(),
-        loading: true
-      });
-      console.log(this.state.forecast);
     } catch (error) {
       console.log(error);
+      this.setState({
+        loading: false
+      });
     }
   }
 
+  fetchDataForecastAsync = async () => {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?id=${this.state.cityId}&appid=${this.props.apiKey}&units=metric&cnt=5`
+    );
+    return await response.json();
+  };
+
   render() {
-    if (this.state.loading) {
-      const forecast = this.state.forecast;
+    const { forecast, loading } = this.state;
+
+    if (loading && forecast.cod === "200") {
       return (
         <div className='p-4 m-2' style={{ height: "40%" }}>
           <div
@@ -86,8 +94,13 @@ export default class Forecast extends Component {
       );
     } else {
       return (
-        <div className='p-4' style={{ height: "40%" }}>
-          LOADING
+        <div
+          className='p-4 flex justify-center items-center'
+          style={{ height: "40%" }}>
+          <div>
+            <GridLoader color={"#123abc"} />
+            <p className='mt-4'>Loading...</p>
+          </div>
         </div>
       );
     }

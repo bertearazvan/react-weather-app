@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import icons from "../icons/icons";
 import moment from "moment";
+import GridLoader from "react-spinners/GridLoader";
 
 class CurrentWeather extends Component {
   state = {
-    loading: this.props.currentWeather ? true : false
+    loading: this.props.currentWeather.cod === 200 ? true : false
   };
 
   render() {
     const weather = this.props.currentWeather;
-
-    if (this.state.loading) {
+    if (this.state.loading && weather.cod === 200) {
       return (
         <div
           className='p-4 grid'
@@ -100,8 +100,13 @@ class CurrentWeather extends Component {
       );
     } else {
       return (
-        <div className='p-4 grid' style={{ height: "60%" }}>
-          LOADING
+        <div
+          className='p-4 flex justify-center items-center'
+          style={{ height: "60%" }}>
+          <div>
+            <GridLoader color={"#123abc"} />
+            <p className='mt-4'>Loading...</p>
+          </div>
         </div>
       );
     }
