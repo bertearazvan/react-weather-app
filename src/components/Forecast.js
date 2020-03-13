@@ -20,9 +20,6 @@ export default class Forecast extends Component {
       );
     } catch (error) {
       console.log(error);
-      this.setState({
-        loading: false
-      });
     }
   }
 
@@ -35,6 +32,7 @@ export default class Forecast extends Component {
 
   render() {
     const { forecast, loading } = this.state;
+    const { handleForecastChange } = this.props;
 
     if (loading && forecast.cod === "200") {
       return (
@@ -50,7 +48,7 @@ export default class Forecast extends Component {
                 <div
                   key={("forecast-", index)}
                   className='flex items-center justify-center p-4 forecastItem'
-                  onClick={() => this.props.handleForecastChange(item)}
+                  onClick={() => handleForecastChange(item)}
                   style={
                     index !== 0
                       ? { borderLeft: "3px solid black" }

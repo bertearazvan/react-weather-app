@@ -6,8 +6,8 @@ import GridLoader from "react-spinners/GridLoader";
 
 class Main extends Component {
   state = {
-    currentWeather: {},
-    apiKey: "1ffbe8f54b8f87482ca96356aa6d91c0",
+    currentWeather: Object,
+    apiKey: process.env.REACT_APP_API_KEY,
     cityId: 2618425,
     loading: false
   };
@@ -55,20 +55,16 @@ class Main extends Component {
 
   render() {
     const { loading, currentWeather } = this.state;
-    console.log(loading, ",", currentWeather.cod);
+
     if (
       (loading && currentWeather.cod === 200) ||
       currentWeather.cod === "200"
     ) {
       return (
-        <div
-          className='flex relative max-w-5xl w-full m-auto items-center'
-          style={{ height: "90vh" }}>
+        <div className='flex relative max-w-5xl w-full h-screen m-auto items-center'>
           <div>
             <SearchBar handleSearchCity={this.onCityChange} />
-            <div
-              className='mt-12 border border-gray-600 text-center rounded-lg shadow-md'
-              style={{ width: "100%", height: "auto" }}>
+            <div className='mt-12 border w-full h-auto border-gray-600 text-center rounded-lg shadow-md'>
               <CurrentWeather currentWeather={this.state.currentWeather} />
               <Forecast
                 handleForecastChange={this.onForecastChange}
@@ -85,8 +81,8 @@ class Main extends Component {
           className='flex max-w-5xl m-auto items-center'
           style={{ height: "90vh" }}>
           <div
-            className='border flex justify-center items-center border-gray-600 text-center rounded-lg shadow-md'
-            style={{ width: "100%", height: "60vh" }}>
+            className='border flex w-full justify-center items-center border-gray-600 text-center rounded-lg shadow-md'
+            style={{ height: "60vh" }}>
             <div>
               <GridLoader color={"#123abc"} />
               <p className='mt-4'>Loading...</p>

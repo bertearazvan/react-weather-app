@@ -87,6 +87,6 @@ h4 {
 }
 
 .searchResult:hover {
-  background-color: green;
+  background-color: rgb(219, 219, 219);
   cursor: pointer;
 }
