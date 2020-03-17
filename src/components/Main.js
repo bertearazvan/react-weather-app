@@ -3,7 +3,7 @@ import CurrentWeather from "./CurrentWeather";
 import Forecast from "./Forecast";
 import SearchBar from "./SearchBar";
 import GridLoader from "react-spinners/GridLoader";
-import CustomMarker from "./Map";
+import Map from "./Map";
 
 class Main extends Component {
   state = {
@@ -13,6 +13,8 @@ class Main extends Component {
     lon: 4.916667,
     loading: false
   };
+
+  uberSearch = React.createRef();
 
   componentDidMount() {
     try {
@@ -56,22 +58,19 @@ class Main extends Component {
     this.setState({ currentWeather: currentForecast });
   };
 
-  onMapChange = country => {
-    this.setState({ loading: false });
+  onMapChange = (lat, long) => {
+    // this.setState({ loading: false });
     try {
-      this.fetchDataAsync(
-        country.CapitalLatitude,
-        country.CapitalLongitude
-      ).then(data =>
+      this.fetchDataAsync(lat, long).then(data => {
         this.setState({
           currentWeather: data,
           loading: true,
-          lat: country.CapitalLatitude,
-          lon: country.CapitalLongitude
-        })
-      );
+          lat: lat,
+          lon: long
+        });
+      });
     } catch (err) {
-      console.log("An error has occured: ", err);
+      alert("An error has occured: ", err);
     }
   };
 
@@ -85,15 +84,21 @@ class Main extends Component {
       return (
         <div className='flex relative w-full h-screen m-auto justify-center items-center'>
           <div className=''>
-            <SearchBar handleSearchCity={this.onCityChange} />
+            {/* <SearchBar handleSearchCity={this.onCityChange} /> */}
+            <div
+              id='container-geocode'
+              className='flex justify-center m-auto'
+              ref={this.uberSearch}
+            />
             <div
               className='grid m-auto border h-auto mt-16 border-gray-600 w-5/6'
               style={{ gridTemplateColumns: "40% 60%" }}>
               <div className='flex-1'>
-                <CustomMarker
+                <Map
                   lon={lon}
                   lat={lat}
                   handleMapChange={this.onMapChange}
+                  refD={this.uberSearch}
                 />
               </div>
               <div className='flex-1 w-full text-center rounded-lg shadow-md'>

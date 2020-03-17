@@ -22,7 +22,7 @@ class Map extends PureComponent {
     viewport: {
       latitude: Number(this.props.lat),
       longitude: Number(this.props.lon),
-      zoom: 5
+      zoom: 8
     }
   };
 
@@ -44,17 +44,9 @@ class Map extends PureComponent {
     });
   };
 
-  handleMapChange = country => {
-    this.setState({
-      viewport: {
-        latitude: country.CapitalLatitude,
-        longitude: country.CapitalLongitude
-      }
-    });
-  };
-
   render() {
-    const { handleMapChange } = this.props;
+    const { handleMapChange, refD } = this.props;
+
     return (
       <ReactMapGL
         {...this.state.viewport}
@@ -66,38 +58,56 @@ class Map extends PureComponent {
           <NavigationControl className='m-2' />
         </div>
         <div className='m-2 float-right'>
-          <GeolocateControl />
+          <GeolocateControl showUserLocation={true} />
         </div>
+
         <Geocoder
           mapRef={this.mapRef}
+          containerRef={refD}
+          placeholder='Search city'
+          onResult={result =>
+            handleMapChange(result.result.center[1], result.result.center[0])
+          }
           onViewportChange={this.handleGeocoderViewportChange}
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
         />
 
-        {cityList.map((country, index) => {
-          // console.log(country.CountryName);
-
-          return (
-            <Marker
-              key={index}
-              longitude={Number(country.CapitalLongitude)}
-              latitude={Number(country.CapitalLatitude)}>
-              {/* <img src='' alt='' /> */}
-              <span
-                className='cursor-pointer'
-                onClick={() => handleMapChange(country)}>
-                <img
-                  className='map-pin m-auto'
-                  src={process.env.PUBLIC_URL + "/pin.png"}
-                  alt='pin'
-                />
-                <h1 className='cursor-pointer text-center'>
-                  {country.CapitalName}
-                </h1>
-              </span>
-            </Marker>
-          );
-        })}
+        {/* <Marker
+          longitude={this.state.viewport.longitude}
+          latitude={this.state.viewport.latitude}>
+          <span>
+            <img
+              className='map-pin m-auto'
+              src={process.env.PUBLIC_URL + "/pin.png"}
+              alt='pin'
+            />
+          </span>
+        </Marker> */}
+        {
+          // cityList.map((country, index) => {
+          //   // console.log(country.CountryName);
+          //   return (
+          //     <Marker
+          //       key={index}
+          //       longitude={Number(country.CapitalLongitude)}
+          //       latitude={Number(country.CapitalLatitude)}>
+          //       {/* <img src='' alt='' /> */}
+          //       <span
+          //         className='cursor-pointer'
+          //         onClick={() => handleMapChange(country)}>
+          //         <img
+          //           className='map-pin m-auto'
+          //           src={process.env.PUBLIC_URL + "/pin.png"}
+          //           alt='pin'
+          //         />
+          //         <h1 className='cursor-pointer text-center'>
+          //           {country.CapitalName}
+          //         </h1>
+          //       </span>
+          //     </Marker>
+          //   );
+          // })
+        }
       </ReactMapGL>
     );
   }
