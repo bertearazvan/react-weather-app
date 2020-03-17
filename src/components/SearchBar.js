@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import cityJSON from "../icons/city_list.json";
+import cities from "cities.json";
+
+let cityJSON = cities;
 
 class SearchBar extends Component {
   state = {
@@ -12,7 +14,7 @@ class SearchBar extends Component {
   setSearch = city => {
     this.setState({ currentSelect: city });
     document.getElementById("searchBar").value =
-      city.name + ", " + city.subcountry + ", " + city.country;
+      city.name + ", " + city.country;
     this.setState({ searchedString: "" });
   };
 
@@ -20,8 +22,7 @@ class SearchBar extends Component {
     this.setState({ searchedString: event.target.value });
     if (event.target.value.length > 2) {
       var cities = cityJSON.filter(function(city) {
-        let FullString =
-          city.name + ", " + city.subcountry + ", " + city.country;
+        let FullString = city.name + ", " + city.country;
         return FullString.includes(event.target.value);
       });
 
@@ -50,9 +51,7 @@ class SearchBar extends Component {
               />
 
               <button
-                onClick={() =>
-                  this.props.handleSearchCity(currentSelect.geonameid)
-                }
+                onClick={() => this.props.handleSearchCity(currentSelect)}
                 className='searchBtn'
                 style={{ width: "15%" }}>
                 View
@@ -76,7 +75,7 @@ class SearchBar extends Component {
                       key={("item-", index)}
                       cityid={city.geonameid}
                       onClick={() => this.setSearch(city)}>
-                      {city.name}, {city.subcountry}, {city.country}
+                      {city.name}, {city.country}
                     </p>
                   );
                 })

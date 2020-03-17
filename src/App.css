@@ -1,3 +1,8 @@
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
 .nav {
   font-family: "Oswald";
   font-size: 26px;
@@ -23,21 +28,21 @@ h5 {
 /* Title */
 h2 {
   text-align: center;
-  font-size: 56px;
+  font-size: 46px;
   font-weight: 500;
 }
 
 /* Day/Time */
 h3 {
   text-align: center;
-  font-size: 36px;
+  font-size: 26px;
   font-weight: 500;
 }
 
 /* Specifics title */
 h4 {
   text-align: center;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 500;
 }
 
@@ -49,14 +54,14 @@ h4 {
 
 #tempMain {
   text-align: center;
-  font-size: 64px;
+  font-size: 44px;
   font-weight: 600;
 }
 
 #minMaxMain {
   margin-top: -10px;
   text-align: center;
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 600;
   letter-spacing: 2px;
   padding-left: 7px;
@@ -89,4 +94,9 @@ h4 {
 .searchResult:hover {
   background-color: rgb(219, 219, 219);
   cursor: pointer;
+}
+
+.map-pin {
+  width: 60px;
+  height: auto;
 }

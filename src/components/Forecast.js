@@ -5,6 +5,8 @@ import GridLoader from "react-spinners/GridLoader";
 
 export default class Forecast extends Component {
   state = {
+    lat: this.props.lat,
+    lon: this.props.lon,
     cityId: this.props.cityId,
     loading: false,
     forecast: Object
@@ -25,7 +27,7 @@ export default class Forecast extends Component {
 
   fetchDataForecastAsync = async () => {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?id=${this.state.cityId}&appid=${this.props.apiKey}&units=metric&cnt=5`
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${this.state.lat}&lon=${this.state.lon}&appid=${this.props.apiKey}&units=metric&cnt=5`
     );
     return await response.json();
   };
