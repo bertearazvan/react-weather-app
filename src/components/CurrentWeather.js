@@ -66,7 +66,7 @@ class CurrentWeather extends Component {
             <div
               className='grid mx-20'
               style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr" }}>
-              <div className='flex items-center justify-center'>
+              <div className='flex justify-center'>
                 <div>
                   <h4>RISES</h4>
                   <p className='specificsMain'>
@@ -74,7 +74,7 @@ class CurrentWeather extends Component {
                   </p>
                 </div>
               </div>
-              <div className='flex items-center justify-center'>
+              <div className='flex justify-center'>
                 <div>
                   <h4>SETS</h4>
                   <p className='specificsMain'>
@@ -82,7 +82,7 @@ class CurrentWeather extends Component {
                   </p>
                 </div>
               </div>
-              <div className='flex items-center justify-center'>
+              <div className='flex justify-center'>
                 <div>
                   <h4>HUM.</h4>
                   <p className='specificsMain'>
@@ -90,7 +90,7 @@ class CurrentWeather extends Component {
                   </p>
                 </div>
               </div>
-              <div className='flex items-center justify-center'>
+              <div className='flex justify-center'>
                 <div>
                   <h4>WIND</h4>
                   <p className='specificsMain'>
@@ -98,7 +98,7 @@ class CurrentWeather extends Component {
                   </p>
                 </div>
               </div>
-              <div className='flex items-center justify-center'>
+              <div className='flex justify-center'>
                 <div>
                   <h4>PRESS.</h4>
                   <p className='specificsMain'>

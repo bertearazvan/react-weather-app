@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import CurrentWeather from "./CurrentWeather";
 import Forecast from "./Forecast";
-import SearchBar from "./SearchBar";
+import ChartsContainer from "./Statistics";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import GridLoader from "react-spinners/GridLoader";
 import Map from "./Map";
+import CenteredTabs from "./Tabs";
 
 class Main extends Component {
   state = {
@@ -74,6 +76,10 @@ class Main extends Component {
     }
   };
 
+  onTabChange = tabIndex => {
+    console.log(tabIndex);
+  };
+
   render() {
     const { loading, currentWeather, lat, lon } = this.state;
 
@@ -83,7 +89,7 @@ class Main extends Component {
     ) {
       return (
         <div className='flex relative w-full h-screen m-auto justify-center items-center'>
-          <div className=''>
+          <div className='' style={{ height: "90vh" }}>
             {/* <SearchBar handleSearchCity={this.onCityChange} /> */}
             <div
               id='container-geocode'
@@ -91,8 +97,12 @@ class Main extends Component {
               ref={this.uberSearch}
             />
             <div
-              className='grid m-auto border h-auto mt-16 border-gray-600 w-5/6'
-              style={{ gridTemplateColumns: "40% 60%" }}>
+              className='grid  shadow-md m-auto mt-16'
+              style={{
+                gridTemplateColumns: "40% 60%",
+                height: "65vh",
+                width: "70vw"
+              }}>
               <div className='flex-1'>
                 <Map
                   lon={lon}
@@ -101,14 +111,42 @@ class Main extends Component {
                   refD={this.uberSearch}
                 />
               </div>
-              <div className='flex-1 w-full text-center rounded-lg shadow-md'>
-                <CurrentWeather currentWeather={this.state.currentWeather} />
-                <Forecast
-                  handleForecastChange={this.onForecastChange}
-                  lat={this.state.lat}
-                  lon={this.state.lon}
-                  apiKey={this.state.apiKey}
-                />
+              <div className='flex-1 overflow-y-auto w-full text-center rounded-lg'>
+                <Router>
+                  <div className='flex justify-center z-10'>
+                    <CenteredTabs handleTabChange={this.onTabChange} />
+                  </div>
+                  <Switch>
+                    <Route
+                      path={process.env.PUBLIC_URL + "/main"}
+                      active
+                      render={props => (
+                        <div>
+                          <CurrentWeather
+                            currentWeather={this.state.currentWeather}
+                            {...props}
+                          />
+                          <Forecast
+                            handleForecastChange={this.onForecastChange}
+                            lat={this.state.lat}
+                            lon={this.state.lon}
+                            apiKey={this.state.apiKey}
+                            {...props}
+                          />
+                        </div>
+                      )}></Route>
+                    <Route
+                      path={process.env.PUBLIC_URL + "/charts"}
+                      render={props => (
+                        <ChartsContainer
+                          lat={this.state.lat}
+                          lon={this.state.lon}
+                          apiKey={this.state.apiKey}
+                          {...props}
+                        />
+                      )}></Route>
+                  </Switch>
+                </Router>
               </div>
             </div>
           </div>

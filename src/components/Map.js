@@ -1,10 +1,5 @@
 import React, { PureComponent } from "react";
-import ReactMapGL, {
-  Marker,
-  NavigationControl,
-  GeolocateControl
-} from "react-map-gl";
-import cityList from "../icons/city_list2.json";
+import ReactMapGL, { NavigationControl, GeolocateControl } from "react-map-gl";
 import Geocoder from "react-map-gl-geocoder";
 
 // "styles": {

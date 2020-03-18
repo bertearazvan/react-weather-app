@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import cities from "cities.json";
+import cities from "../icons/city_list2.json";
 
 let cityJSON = cities;
 

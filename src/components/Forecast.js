@@ -7,7 +7,6 @@ export default class Forecast extends Component {
   state = {
     lat: this.props.lat,
     lon: this.props.lon,
-    cityId: this.props.cityId,
     loading: false,
     forecast: Object
   };

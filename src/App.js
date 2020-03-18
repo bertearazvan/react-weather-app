@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Redirect,
+  Route,
+  Link
+} from "react-router-dom";
 import Main from "./components/Main";
 import CityList from "./components/CityList";
 import "./App.css";
@@ -10,10 +16,12 @@ function App() {
   return (
     <div className='App'>
       <Router className=''>
-        <div className='w-full z-10 fixed px-32 py-8'>
+        <div className='w-full z-10 relative px-32 py-8'>
           <div className='float-left nav'>
             <ul>
-              <Link className='inline-block' to={process.env.PUBLIC_URL}>
+              <Link
+                className='inline-block'
+                to={process.env.PUBLIC_URL + "/main"}>
                 <p> Weather App </p>
               </Link>
               <Link
@@ -30,9 +38,18 @@ function App() {
           </div>
         </div>
         <Switch>
+          <Route exact path={process.env.PUBLIC_URL + "/"}>
+            <Redirect to={process.env.PUBLIC_URL + "/main"} />
+          </Route>
           <Route
             exact
-            path={process.env.PUBLIC_URL}
+            path={process.env.PUBLIC_URL + "/main"}
+            component={props => <Main {...props} />}
+          />
+
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/charts"}
             component={props => <Main {...props} />}
           />
           <Route
