@@ -17,7 +17,7 @@ function RenderLineChart(props) {
   console.log(props.data);
   // const data = [{ name: "Humidity & temperature", temp: 1 }];
   const data = [];
-  console.log(data + "dasd");
+  console.log(data + "asdaadsassd");
   props.data.map((forecast, index) => {
     console.log(moment(forecast.dt * 1000).format("LT"));
     return data.push({
