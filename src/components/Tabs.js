@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -20,16 +19,8 @@ export default function CenteredTabs(props) {
         indicatorColor='primary'
         textColor='primary'
         centered>
-        <Tab
-          label='Weather'
-          component={Link}
-          to={process.env.PUBLIC_URL + "/main"}
-        />
-        <Tab
-          label='Statistics'
-          component={Link}
-          to={process.env.PUBLIC_URL + "/charts"}
-        />
+        <Tab label='Weather' />
+        <Tab label='Statistics' />
       </Tabs>
     </Paper>
   );

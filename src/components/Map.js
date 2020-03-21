@@ -49,7 +49,7 @@ class Map extends PureComponent {
         width='100%'
         height='100%'
         onViewportChange={viewport => this.setState({ viewport })}>
-        <div className='absolute display-inline'>
+        <div className='absolute mb-0 h-full flex items-center'>
           <NavigationControl className='m-2' />
         </div>
         <div className='m-2 float-right'>

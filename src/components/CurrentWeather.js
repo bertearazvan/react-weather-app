@@ -14,10 +14,8 @@ class CurrentWeather extends Component {
 
     if (loading) {
       return (
-        <div
-          className='p-4 grid'
-          style={{ height: "60%", gridTemplateColumns: "35% 65%" }}>
-          <div className='flex items-center justify-center'>
+        <div className='p-4 grid grid-cols-1 h-full sm:grid-cols-7'>
+          <div className='flex sm:col-span-2 items-center justify-center'>
             <div>
               <div className='flex justify-center'>
                 <img
@@ -38,9 +36,9 @@ class CurrentWeather extends Component {
               <h3>{currentWeather.weather[0].main}</h3>
             </div>
           </div>
-          <div className=' grid' style={{ gridTemplateRows: "60% 40%" }}>
-            <div className='grid' style={{ gridTemplateColumns: "40% 60%" }}>
-              <div className='flex items-center justify-center'>
+          <div className='grid row-start-1 md:row-auto grid-rows-12 gap-4 sm:col-span-5'>
+            <div className='grid grid-cols-12 row-span-4'>
+              <div className='flex col-span-4 items-center justify-center'>
                 <div>
                   <p id='tempMain'>
                     {Math.floor(currentWeather.main.temp)}&#xb0;C
@@ -51,7 +49,7 @@ class CurrentWeather extends Component {
                   </p>
                 </div>
               </div>
-              <div className='flex items-center justify-center'>
+              <div className='flex col-span-8 items-center justify-center'>
                 <div>
                   <h2>
                     {currentWeather.name + ", " + currentWeather.sys.country}
@@ -63,9 +61,7 @@ class CurrentWeather extends Component {
                 </div>
               </div>
             </div>
-            <div
-              className='grid mx-20'
-              style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr" }}>
+            <div className='grid grid-cols-5 row-span-8 mx-2'>
               <div className='flex justify-center'>
                 <div>
                   <h4>RISES</h4>

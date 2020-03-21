@@ -8,7 +8,6 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
-import CityListJSON from "../icons/city_list.json";
 
 const columns = [
   { id: "geonameid", label: "Geo id", minWidth: 170 },
@@ -16,18 +15,6 @@ const columns = [
   { id: "subcountry", label: "Subcountry", align: "right", minWidth: 100 },
   { id: "country", label: "Country", minWidth: 170, align: "right" }
 ];
-
-function createData(geonameid, name, subcountry, country) {
-  return { geonameid, name, subcountry, country };
-}
-
-const rows = [];
-
-CityListJSON.forEach(city => {
-  rows.push(
-    createData(city.geonameid, city.name, city.subcountry, city.country)
-  );
-});
 
 const useStyles = makeStyles({
   root: {
@@ -38,7 +25,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function StickyHeadTable() {
+export default function StickyHeadTable(props) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -69,7 +56,7 @@ export default function StickyHeadTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
+            {props.rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map(row => {
                 return (
@@ -97,7 +84,7 @@ export default function StickyHeadTable() {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component='div'
-        count={rows.length}
+        count={props.rows.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onChangePage={handleChangePage}

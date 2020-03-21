@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import cities from "../icons/city_list2.json";
+import cities from "../icons/city_list.json";
 
 let cityJSON = cities;
 
@@ -7,41 +7,27 @@ class SearchBar extends Component {
   state = {
     loading: true,
     foundCities: [],
-    searchedString: "",
-    currentSelect: Object
-  };
-
-  setSearch = city => {
-    this.setState({ currentSelect: city });
-    document.getElementById("searchBar").value =
-      city.name + ", " + city.country;
-    this.setState({ searchedString: "" });
+    searchedString: ""
   };
 
   onSearching = event => {
     this.setState({ searchedString: event.target.value });
-    if (event.target.value.length > 2) {
-      var cities = cityJSON.filter(function(city) {
-        let FullString = city.name + ", " + city.country;
-        return FullString.includes(event.target.value);
-      });
+    var cities = cityJSON.filter(function(city) {
+      let FullString = city.name + city.country + city.subcountry;
+      return FullString.includes(event.target.value);
+    });
 
-      this.setState({ foundCities: cities });
-    } else {
-      this.setState({ foundCities: [] });
-    }
+    this.setState({ foundCities: cities });
   };
 
   render() {
-    const { loading, searchedString, currentSelect, foundCities } = this.state;
+    const { loading, foundCities } = this.state;
 
     if (loading) {
       return (
-        <div
-          className='grid absolute w-full'
-          style={{ gridTemplateColumns: "1fr", marginTop: "-20px" }}>
+        <div className='grid w-full grid-cols-1'>
           <div className='flex justify-center'>
-            <div className='w-6/12 border border-gray-600 rounded-lg shadow-md'>
+            <div className=' w-10/12 sm:w-6/12 border border-gray-600 rounded-lg shadow-md'>
               <input
                 type='text'
                 id='searchBar'
@@ -51,37 +37,11 @@ class SearchBar extends Component {
               />
 
               <button
-                onClick={() => this.props.handleSearchCity(currentSelect)}
+                onClick={() => this.props.handleSearchCity(foundCities)}
                 className='searchBtn'
                 style={{ width: "15%" }}>
                 View
               </button>
-            </div>
-          </div>
-          <div className='flex justify-center'>
-            <div
-              className='border w-6/12 border-gray-600 p-2 bg-white overflow-y-auto'
-              style={{
-                maxHeight: "10vh",
-                borderRadius: "0px 0px .5rem .5rem",
-                borderTop: "0px",
-                display: searchedString.length < 3 ? "none" : "block"
-              }}>
-              {foundCities.length !== 0 ? (
-                foundCities.map((city, index) => {
-                  return (
-                    <p
-                      className='searchResult'
-                      key={("item-", index)}
-                      cityid={city.geonameid}
-                      onClick={() => this.setSearch(city)}>
-                      {city.name}, {city.country}
-                    </p>
-                  );
-                })
-              ) : (
-                <p>Sorry, no items</p>
-              )}
             </div>
           </div>
         </div>

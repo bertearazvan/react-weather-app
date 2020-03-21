@@ -37,11 +37,10 @@ export default class Forecast extends Component {
 
     if (loading && forecast.cod === "200") {
       return (
-        <div className='p-4 m-2' style={{ height: "40%" }}>
+        <div className='p-4 h-full'>
           <div
-            className='grid h-full pt-4'
+            className='grid grid-cols-5 h-full pt-4'
             style={{
-              gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
               borderTop: "3px solid black"
             }}>
             {forecast.list.map((item, index) => {
@@ -60,7 +59,8 @@ export default class Forecast extends Component {
                       {moment(new Date()).format("dddd") ===
                       moment(item.dt * 1000).format("dddd")
                         ? "Today"
-                        : moment(item.dt * 1000).format("dddd")}{" "}
+                        : moment(item.dt * 1000).format("dddd")}
+                      {<br />}
                       {moment(item.dt * 1000)
                         .format("LT")
                         .replace(":00", "")}
