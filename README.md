@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Tokens
+
+This project does not include Mapbox and OpenWeatherApp API tokens. Please create a free account and use them as environmental variables.
+
 ## Available Scripts
 
 In the project directory, you can run:
