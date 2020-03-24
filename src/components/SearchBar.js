@@ -14,7 +14,9 @@ class SearchBar extends Component {
     this.setState({ searchedString: event.target.value });
     var cities = cityJSON.filter(function(city) {
       let FullString = city.name + city.country + city.subcountry;
-      return FullString.includes(event.target.value);
+      return FullString.toLowerCase().includes(
+        event.target.value.toLowerCase()
+      );
     });
 
     this.setState({ foundCities: cities });
