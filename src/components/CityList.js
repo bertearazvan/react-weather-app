@@ -17,7 +17,7 @@ CityListJSON.forEach(city => {
 
 export default class CityList extends Component {
   state = {
-    rows: rows
+    rows: rows   
   };
   onCityChange = citylist => {
     this.setState({ rows: citylist });
