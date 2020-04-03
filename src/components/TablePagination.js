@@ -41,7 +41,7 @@ export default function StickyHeadTable(props) {
 
   return (
     <Paper className={classes.root}>
-      <TableContainer className={classes.container}>
+      <TableContainer data-cy='tableCities' className={classes.container}>
         <Table stickyHeader aria-label='sticky table'>
           <TableHead>
             <TableRow>
@@ -82,6 +82,7 @@ export default function StickyHeadTable(props) {
         </Table>
       </TableContainer>
       <TablePagination
+        data-cy='paginationTableCities'
         rowsPerPageOptions={[10, 25, 100]}
         component='div'
         count={props.rows.length}

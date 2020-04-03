@@ -12,7 +12,7 @@ function App() {
   return (
     <div className='App'>
       <Router>
-        <TemporaryDrawer />
+        <TemporaryDrawer/>
         <Switch>
           <Route
             exact

@@ -49,15 +49,23 @@ export default function TemporaryDrawer() {
           className='mx-6 my-6 sm:mx-10 sm:my-10 z-10 absolute flex items-center cursor-pointer'
           onClick={toggleDrawer("left", true)}>
           <div style={{ backgroundColor: "#3742fa", borderRadius: "60%" }}>
-            <MenuOutlinedIcon className={classes.icon} fontSize='large' />
+            <MenuOutlinedIcon
+              data-cy='sidebarIcon'
+              className={classes.icon}
+              fontSize='large'
+            />
           </div>
         </div>
 
         <Drawer
+          data-cy='sidebarDrawer'
           anchor={"left"}
           open={state["left"]}
           onClose={toggleDrawer("left", false)}>
-          <h2 className='m-4' style={{ color: "#3742fa" }}>
+          <h2
+            className='m-4'
+            data-cy='sidebarTitle'
+            style={{ color: "#3742fa" }}>
             Weather app
           </h2>
           <div
@@ -65,7 +73,7 @@ export default function TemporaryDrawer() {
             role='presentation'
             onClick={toggleDrawer("left", false)}
             onKeyDown={toggleDrawer("left", false)}>
-            <List>
+            <List data-cy='sidebarList'>
               <ListItem
                 className={classes.text}
                 button

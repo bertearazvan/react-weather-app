@@ -25,7 +25,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress": "cypress open"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,5 +43,9 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://bertearazvan.github.io/react-weather-app/build/"
+  "homepage": "https://bertearazvan.github.io/react-weather-app/build/",
+  "devDependencies": {
+    "cypress": "^4.3.0",
+    "eslint-plugin-cypress": "^2.10.3"
+  }
 }

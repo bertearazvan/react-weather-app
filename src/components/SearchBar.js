@@ -33,6 +33,7 @@ class SearchBar extends Component {
               <input
                 type='text'
                 id='searchBar'
+                data-cy='searchBar'
                 className='searchBar w-10/12 p-2 bg-transparent'
                 placeholder='Search by city...'
                 onKeyUp={event => this.onSearching(event)}
@@ -41,6 +42,7 @@ class SearchBar extends Component {
               <button
                 onClick={() => this.props.handleSearchCity(foundCities)}
                 className='searchBtn'
+                data-cy='searchBtn'
                 style={{ width: "15%" }}>
                 View
               </button>
